@@ -18,5 +18,5 @@ transfer:
 	scp Asst1.tgz kpb81@java.cs.rutgers.edu:~/CS214
 
 clean:
-	@rm -f sort
+	@rm -f malloc
 	@rm -f *.o

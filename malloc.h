@@ -13,7 +13,7 @@ struct mBlock
 	struct mBlock *next;
 	struct mBlock *prev;
 	unsigned int isFree:1; //boolean, 0 if free, 1 if not
-	insigned int mSize:24; //size of mem
+	unsigned int mSize:24; //size of mem
 };
 
 void* mymalloc(unsigned int, char*, unsigned int);

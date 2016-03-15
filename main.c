@@ -15,10 +15,11 @@ int main(int argc, char* argv[])
 	//first should work, second shouldn't
 	char *test3 = malloc(40);
 	free(test3);
-	printf("\n expecting error\n");
+	printf("expecting error\n");
 	free(test3);
 
 	//invalid address no work
+	printf("expecting error\n");
 	free(0);
 
 
@@ -29,16 +30,18 @@ int main(int argc, char* argv[])
 	free(p);
 
 	//another assignment example, shouldn't work
+	printf("expecting error\n");
 	int x;
 	free(&x);
 
 	//another assignment example, shouldn't work
+	printf("expecting error\n");
 	p = (char *)malloc(200);
 	free(p+10);
 
-	char *str = malloc(sizeof(char) *strlen(argv[1]));
-	strcpy(str, argv[1]);
-	free(str);
+	// char *str = malloc(sizeof(char) *strlen(argv[1]));
+	// strcpy(str, argv[1]);
+	// free(str);
 
 
 

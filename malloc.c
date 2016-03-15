@@ -97,7 +97,9 @@ void myfree(void *p, char *file, unsigned int line)
 	mBlock *current;
 	mBlock *ptr = (mBlock *)((char *)p - sizeof(mBlock));
 
-	for(current = head; current != NULL; current = current->next)
+	current = head;
+
+	while(current != NULL)
 	{
 		if(current == ptr)
 		{
@@ -126,6 +128,8 @@ void myfree(void *p, char *file, unsigned int line)
 			printf("Freeing block at location %d\n", location);
 			return;
 		}
+
+		current = current->next;
 	}
 
 	fprintf(stderr, "Error: Invalid pointer address. In file: %s, line %d\n",file,line);

@@ -3,8 +3,6 @@ CFLAGS = -Wall
 
 all: malloc
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
 
 malloc: main.o malloc.o
 	$(CC) $(CCFLAGS)  -o malloc main.o mymalloc.o

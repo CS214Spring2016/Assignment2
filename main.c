@@ -1,54 +1,44 @@
-#include "malloc.h"
+#include "mymalloc.h"
 #include <stdio.h>
 #include <string.h>
 
 int main(int argc, char* argv[])
 {
 
-	char* test1 = malloc(7950);
+	char* a = malloc(7950);
 
-	//char* test2 = malloc(2);
+	char* b = malloc(2);
 
-	// //test one yay both should work
-	// char *test1 = malloc(10);
-	// char *test2 = malloc(30);
+	//test one yay both should work
+	char *c = malloc(10);
+	free(c);
 
-	// free(test1);
-	// free(test2);
+	//first should work, second shouldn't
+	char *d = malloc(40);
+	free(d);
+	printf("expecting error\n");
+	free(d);
 
-	// //first should work, second shouldn't
-	// char *test3 = malloc(40);
-	// free(test3);
-	// printf("expecting error\n");
-	// free(test3);
-
-	// //invalid address no work
-	// printf("expecting error\n");
-	// free(0);
+	//invalid address no work
+	printf("expecting error\n");
+	free(0);
 
 
-	// //example from the assignment
-	// char *p = malloc(100);
-	// free(p);
-	// p = (char *)malloc(100);
-	// free(p);
+	//example from the assignment
+	char *e = malloc(100);
+	free(e);
+	e = (char *)malloc(100);
+	free(e);
 
-	// //another assignment example, shouldn't work
-	// printf("expecting error\n");
-	// int x;
-	// free(&x);
+	//another assignment example, shouldn't work
+	printf("expecting error\n");
+	int x;
+	free(&x);
 
-	// //another assignment example, shouldn't work
-	// printf("expecting error\n");
-	// p = (char *)malloc(200);
-	// free(p+10);
-
-	// char *str = malloc(sizeof(char) *strlen(argv[1]));
-	// strcpy(str, argv[1]);
-	// free(str);
-
-
-
+	//another assignment example, shouldn't work
+	printf("expecting error\n");
+	char* f = malloc(200);
+	free(f+10);
 
 
 	return 0;

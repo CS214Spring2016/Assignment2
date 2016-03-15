@@ -1,7 +1,7 @@
 #include <stdlib.h>
 
-#ifndef MALLOC_H
-#define MALLOC_H
+#ifndef MYMALLOC_H
+#define MYMALLOC_H
 
 #define block_size 8000 //i figure 8000 is a fun number
 #define malloc(x) mymalloc(x, __FILE__, __LINE__)

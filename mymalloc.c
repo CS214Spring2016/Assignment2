@@ -1,10 +1,10 @@
-#include "malloc.h"
+#include "mymalloc.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 
 //this is our gigantic block of memory 
-static char heap[block_size];
+static char ourBlock[block_size];
 static struct mBlock *head;
 
 void *mymalloc(unsigned int size, char* file, unsigned int line)
@@ -16,9 +16,9 @@ void *mymalloc(unsigned int size, char* file, unsigned int line)
 	//first time
 	if(!init)
 	{
-		head = (mBlock *) heap;
-		head->next = head->prev = 0;
+		head = (mBlock *) ourBlock;
 		head->size = block_size - sizeof(mBlock);
+		head->next = head->prev = 0;
 		head->isFree = 1;
 		init = 1;
 	}
@@ -95,7 +95,7 @@ void *mymalloc(unsigned int size, char* file, unsigned int line)
 void myfree(void *p, char *file, unsigned int line)
 {
 
-	int location = p - (void *)heap;
+	int location = p - (void *)ourBlock;
 	mBlock *current;
 	mBlock *ptr = (mBlock *)((char *)p - sizeof(mBlock));
 

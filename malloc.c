@@ -34,7 +34,7 @@ void *mymalloc(unsigned int size, char* file, unsigned int line)
 			current = current->next;
 			if(current == 0)
 			{
-				fprintf(stderr,"Error: no room available to fit data in file: %s, line %d.\n",file,line);
+				fprintf(stderr,"Error: Not enough space in heap: %s, line %d.\n",file,line);
 				return NULL;
 			}
 		}
@@ -48,6 +48,7 @@ void *mymalloc(unsigned int size, char* file, unsigned int line)
 		{
 			//this means we cant use the header
 			//enough room for memory but not header
+			printf("Allocated memory of size %d\n",size);
 			current->isFree = 0;
 			return (char*)current + sizeof(mBlock);
 		}
@@ -58,7 +59,7 @@ void *mymalloc(unsigned int size, char* file, unsigned int line)
 			next->prev = current;
 			next->next = current->next;
 
-			printf("Allocated memory of size %d\n",size);
+
 
 			//when block is in middle
 			if(current->next !=0)
@@ -73,6 +74,7 @@ void *mymalloc(unsigned int size, char* file, unsigned int line)
 			current->size = size;
 			current->isFree = 0;
 
+			printf("Allocated memory of size %d\n",size);
 			return (char*)current + sizeof(mBlock);
 
 

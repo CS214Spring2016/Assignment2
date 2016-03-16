@@ -1,0 +1,61 @@
+//simple malloc and free, base case
+Test 0:
+	Expected Output:
+		Allocated memory of size 10
+		Freeing block at location 32
+	Output:
+		Allocated memory of size 10
+		Freeing block at location 32
+
+//Freeing pointer twice
+Test 1:
+	Expected Output:
+		Allocated memory of size 40
+		Freeing block at location 32
+		expecting error
+		Error: Cannot free already freed pointer. In file: main.c, line 12
+	Output:
+		Allocated memory of size 40
+		Freeing block at location 32
+		expecting error
+		Error: Cannot free already freed pointer. In file: main.c, line 12
+
+//Freeing bad pointer address
+Test 2:
+	Expected Output:
+		expecting error
+		Error: Invalid pointer address. In file: main.c, line 9	
+	Output:
+		expecting error
+		Error: Invalid pointer address. In file: main.c, line 9	
+
+//Freeing bad pointer address, this time by not initializing variable
+Test 3:
+	Expected Output:
+		expecting error
+		Error: Invalid pointer address. In file: main.c, line 9	
+	Output:
+		expecting error
+		Error: Invalid pointer address. In file: main.c, line 9	
+
+//Allocating memory and freeing pointer not returned by malloc
+Test 4:
+	Expected Output:
+		Allocated memory of size 1000
+		Error: Invalid pointer address. In file: main.c, line 9
+	Output:
+		Allocated memory of size 1000
+		Error: Invalid pointer address. In file: main.c, line 9
+
+//Working test, directly from assignment page
+Test 4:
+	Expected Output:
+		Allocated memory of size 100
+		Freeing block at location 32
+		Allocated memory of size 100
+		Freeing block at location 32
+	Output:
+		Allocated memory of size 100
+		Freeing block at location 32
+		Allocated memory of size 100
+		Freeing block at location 32

@@ -1,10 +1,10 @@
-#include "malloc.h"
+#include "mymalloc.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 
 //this is our gigantic block of memory 
-static char heap[block_size];
+static char ourBlock[block_size];
 static struct mBlock *head;
 
 void *mymalloc(unsigned int size, char* file, unsigned int line)
@@ -16,9 +16,9 @@ void *mymalloc(unsigned int size, char* file, unsigned int line)
 	//first time
 	if(!init)
 	{
-		head = (mBlock *) heap;
-		head->next = head->prev = 0;
+		head = (mBlock *) ourBlock;
 		head->size = block_size - sizeof(mBlock);
+		head->next = head->prev = 0;
 		head->isFree = 1;
 		init = 1;
 	}
@@ -34,7 +34,7 @@ void *mymalloc(unsigned int size, char* file, unsigned int line)
 			current = current->next;
 			if(current == 0)
 			{
-				fprintf(stderr,"Error: no room available to fit data in file: %s, line %d.\n",file,line);
+				fprintf(stderr,"Error: Not enough space in heap: %s, line %d.\n",file,line);
 				return NULL;
 			}
 		}
@@ -48,6 +48,7 @@ void *mymalloc(unsigned int size, char* file, unsigned int line)
 		{
 			//this means we cant use the header
 			//enough room for memory but not header
+			printf("Allocated memory of size %d\n",size);
 			current->isFree = 0;
 			return (char*)current + sizeof(mBlock);
 		}
@@ -58,7 +59,7 @@ void *mymalloc(unsigned int size, char* file, unsigned int line)
 			next->prev = current;
 			next->next = current->next;
 
-			printf("Allocated memory of size %d\n",size);
+
 
 			//when block is in middle
 			if(current->next !=0)
@@ -73,6 +74,7 @@ void *mymalloc(unsigned int size, char* file, unsigned int line)
 			current->size = size;
 			current->isFree = 0;
 
+			printf("Allocated memory of size %d\n",size);
 			return (char*)current + sizeof(mBlock);
 
 
@@ -93,7 +95,7 @@ void *mymalloc(unsigned int size, char* file, unsigned int line)
 void myfree(void *p, char *file, unsigned int line)
 {
 
-	int location = p - (void *)heap;
+	int location = p - (void *)ourBlock;
 	mBlock *current;
 	mBlock *ptr = (mBlock *)((char *)p - sizeof(mBlock));
 

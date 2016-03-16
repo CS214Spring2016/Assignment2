@@ -15,18 +15,18 @@ main.o: main.c mymalloc.h
 malloc.o: mymalloc.c mymalloc.h
 	$(CC) $(CCFLAGS) -c mymalloc.c 
 
-test0: test0.c mymalloc.h
-	$(CC) $(CCFLAGS) -c test0.c
-test1: test1.c mymalloc.h
-	$(CC) $(CCFLAGS) -c test1.c
-test2: test2.c mymalloc.h
-	$(CC) $(CCFLAGS) -c test2.c
-test3: test3.c mymalloc.h
-	$(CC) $(CCFLAGS) -c test3.c
-test4: test4.c mymalloc.h
-	$(CC) $(CCFLAGS) -c test4.c
-test5: test5.c mymalloc.h
-	$(CC) $(CCFLAGS) -c test5.c
+test0: test0.o malloc.o
+	$(CC) $(CCFLAGS) -o test0 test0.o malloc.o
+test1: test1.o malloc.o
+	$(CC) $(CCFLAGS) -o test1 test1.o malloc.o
+test2: test2.o malloc.o
+	$(CC) $(CCFLAGS) -o test2 test2.o malloc.o
+test3: test3.o malloc.o
+	$(CC) $(CCFLAGS) -o test3 test3.o malloc.o
+test4: test4.o malloc.o
+	$(CC) $(CCFLAGS) -o test4 test4.o malloc.o
+test5: test5.o malloc.o
+	$(CC) $(CCFLAGS) -o test5 test5.o malloc.o
 
 
 transfer:

@@ -4,7 +4,10 @@
 
 int main(int argc, char* argv[])
 {
-	//simple malloc and free sequence, should throw no errors, small block size
-	char *c = malloc(10);
-	free(c);
+	//example from the assignment
+	//this is a working test
+	char *e = malloc(100);
+	free(e);
+	e = (char *)malloc(100);
+	free(e);
 }
